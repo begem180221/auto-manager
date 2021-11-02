@@ -1,0 +1,58 @@
+<div>
+    <h2>All Car Owners</h2>
+    <div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <caption>
+                <div class="add-button">
+                    <button mat-raised-button color="primary" (click)="addRecord()">+ Add Car Owner</button>
+                </div>
+            </caption>
+
+            <!-- Id Column-->
+            <!-- <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+            </ng-container> -->
+
+            <!-- Last Name Column-->
+            <ng-container matColumnDef="aLastName">
+                <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{ element.aLastName }} </td>
+            </ng-container>
+
+            <!-- First Name Column-->
+            <ng-container matColumnDef="aFirstName">
+                <th mat-header-cell *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{ element.aFirstName }} </td>
+            </ng-container>
+
+            <!-- Middle Name Column-->
+            <ng-container matColumnDef="aMiddleName">
+                <th mat-header-cell *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{ element.aMiddleName }} </td>
+            </ng-container>
+
+            <!-- Count Cars Column-->
+            <ng-container matColumnDef="aCars">
+                <th mat-header-cell *matHeaderCellDef> Count of Cars </th>
+                <td mat-cell *matCellDef="let element"> {{ element.aCars.length }} </td>
+            </ng-container>
+
+            <!-- Actions Column-->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-stroked-button (click)="showRecord(row)">Profile</button>
+                    <button mat-stroked-button style="background-color: gainsboro;"
+                        (click)="editRecord(row)">Edit</button>
+                    <button mat-stroked-button style="background-color: black; color: white;"
+                        (click)="deleteConfirm(row)">Delete</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

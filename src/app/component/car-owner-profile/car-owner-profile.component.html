@@ -1,0 +1,96 @@
+<div *ngIf="isShowMode">
+    <mat-card class="card">
+        <mat-card-title>
+            <strong> {{ currentOwner.aLastName }} </strong>
+            <strong> {{ currentOwner.aFirstName }} </strong>
+            <strong> {{ currentOwner.aMiddleName }} </strong>
+        </mat-card-title>
+        <br>
+        <mat-card-subtitle>
+            <strong>Cars:</strong>
+            <br>
+            <ng-container *ngFor="let car of currentOwner.aCars; index as i">
+                {{ i + 1 }})
+                State Number: <strong>{{ car.aStateNumber }}</strong>
+                Brand: <strong>{{ car.aBrand }}</strong>
+                Model: <strong>{{ car.aModel }}</strong>
+                Year: <strong>{{ car.aYear }}</strong>
+                <br>
+            </ng-container>
+        </mat-card-subtitle>
+        <mat-card-actions>
+            <button mat-raised-button (click)="onBackClick()">&#8656; Back</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div *ngIf="isAddMode || isEditMode">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <h2 *ngIf="isAddMode">Add New Owner Profile</h2>
+        <h2 *ngIf="isEditMode">Edit Owner Profile</h2>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="aLastName" />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="aFirstName" />
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Middle Name</mat-label>
+                <input matInput formControlName="aMiddleName" />
+            </mat-form-field>
+        </div>
+
+        <ng-container formGroupName="aCars">
+            <div>
+                <h3>Autos: </h3>
+            </div>
+            <ng-container *ngFor="let car of aCars.controls; index as i">
+                <div>
+                    <ng-container [formGroupName]="i">
+                        <mat-form-field appearance="outline">
+                            <mat-label>State Number</mat-label>
+                            <input matInput formControlName="aStateNumber" />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Brand</mat-label>
+                            <input matInput formControlName="aBrand" />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Model</mat-label>
+                            <input matInput formControlName="aModel" />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Year</mat-label>
+                            <mat-select formControlName="aYear">
+                                <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <ng-container *ngIf="aCars.length > 1">
+                            <button mat-mini-fab color="warn" (click)="deleteCar(i)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+        <div>
+            <button mat-button (click)="addCar()" [disabled]="!profileForm.valid">+ Add a car</button>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Save</button>
+            <button mat-raised-button (click)="onBackClick()">&#8656; Back</button>
+        </div>
+    </form>
+</div>

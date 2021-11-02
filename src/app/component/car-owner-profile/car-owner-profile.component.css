@@ -1,0 +1,17 @@
+form {
+    padding-top: 1rem;
+    text-align: center;
+}
+
+form h2 {
+    text-shadow: #FC0 1px 0 10px;
+}
+
+button {
+    margin: 0 10px 2rem 5px;
+}
+
+.card {
+    max-width: 450px;
+    margin: 1rem auto 1rem;
+}

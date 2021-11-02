@@ -1,0 +1,22 @@
+h2 {
+    text-align: center;
+    margin-top: 1%;
+}
+
+table {
+    margin: 1% auto;
+    width: 650px;
+}
+
+th.mat-header-cell, td.mat-cell {
+    text-align: center;
+}
+
+td.mat-cell button {
+    margin: 1%;
+}
+
+.add-button {
+    margin: 1% auto;
+    text-align: left;
+}
